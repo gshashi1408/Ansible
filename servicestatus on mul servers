@@ -1,0 +1,12 @@
+- name: Check Service Status
+  hosts: your_server_group
+  become: true  # This allows running tasks with elevated privileges (sudo)
+
+  tasks:
+    - name: Check status of the 'your_service_name' service
+       service_facts:
+         name: your_service_name  # Replace with the actual service name
+
+    - name: Display the service status
+       debug:
+         var: ansible_facts.services['your_service_name'].state
